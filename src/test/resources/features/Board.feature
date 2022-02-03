@@ -3,7 +3,7 @@ Feature: Board Flow
   Background:
     Given the user is logged in to the website
 
-
+  @smoke
   Scenario: User able to create a board
     When the user clicks create button at top navigation
     And the user enters required fields for creating board
@@ -37,7 +37,7 @@ Feature: Board Flow
     And the user adds "red" label to the card
     Then The label "red" added to the card
 
-  @smoke
+
   Scenario: User able to add checklist and checklist item to the card
     When the user selects "new board" from the boards options
     And the user selects "In Testing" list
