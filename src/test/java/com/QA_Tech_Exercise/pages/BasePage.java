@@ -14,8 +14,6 @@ public abstract class  BasePage {
     @FindBy(xpath = "//a[contains(.,'Sign up')]")
     public WebElement signupBtn;
 
-
-
     public BasePage() {
         PageFactory.initElements(Driver.get(), this);
     }

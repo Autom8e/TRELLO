@@ -14,16 +14,22 @@ public class CardsDetailPage extends BasePage{
     public WebElement checklistBtn;
 
     @FindBy(xpath = "//input[@value='Checklist']")
-    public WebElement checklistTitle;     //burada entry sonrası hit enter
+    public WebElement checklistTitle;
 
     @FindBy(xpath = "//textarea[@class='edit field checklist-new-item-text js-new-checklist-item-input']")
-    public WebElement itemOfChecklist;    //burada entry sonrası hit enter
+    public WebElement itemOfChecklist;
 
     @FindBy(xpath = "//a[@class='icon-lg icon-close dark-hover cancel js-cancel-checklist-item']")
-    public WebElement xBtnForCheckListItem; // burası checklist item kadar x butonu buluyor yani en son x butonu bulmalısın
+    public WebElement xBtnForCheckListItem;
+
+    @FindBy(xpath = "//a[@class='pop-over-header-close-btn icon-sm icon-close']")
+    public WebElement xBtnForLabelModal;
 
     @FindBy(xpath = "//a[@class='icon-md icon-close dialog-close-button js-close-window']")
     public WebElement xBtnForCardModal;
+
+    @FindBy(xpath = "//span[@class='checklist-item-details-text markeddown js-checkitem-name']")
+    public WebElement item;
 
 
     public void labelPicker(String color){

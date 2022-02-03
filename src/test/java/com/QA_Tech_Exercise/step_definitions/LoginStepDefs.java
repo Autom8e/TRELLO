@@ -25,24 +25,8 @@ public class LoginStepDefs {
         jse.executeScript("arguments[0].click();",loginPage.loginBtn);
         BrowserUtils.waitFor(2);
         loginPage.passwordInput.sendKeys("qwerty123");
-        //jse.executeScript("arguments[0].setAttribute('value', 'qwerty123')",loginPage.passwordInput);
         jse.executeScript("arguments[0].click();",loginPage.loginBtnAfterEmail);
 
         wait.until(ExpectedConditions.titleContains("Boards"));
     }
-
-/*
-        jse.executeScript("arguments[0].setAttribute('value', 'QATask@mailinator.com')",loginPage.emailInput);
-        jse.executeScript("arguments[0].setAttribute('value', 'qwerty123')",loginPage.passwordInput);
-        jse.executeScript("arguments[0].click();",loginPage.loginBtnAfterEmail);
-
-        loginPage.loginBtnBase.click();
-        loginPage.emailInput.sendKeys(ConfigurationReader.get("username"));
-        loginPage.loginWithAtlassianBtn.click();
-        loginPage.passwordInput.sendKeys(ConfigurationReader.get("password"));
-        loginPage.loginBtn.click();
-
- */
-
-
 }

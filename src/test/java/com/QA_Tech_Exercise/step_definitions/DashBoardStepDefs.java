@@ -10,7 +10,10 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -27,7 +30,7 @@ public class DashBoardStepDefs {
     List<String> globalCardNames;
     CardsDetailPage cardsDetailPage = new CardsDetailPage();
 
-    @Given("the user clicks create button at top navigation")
+    @When("the user clicks create button at top navigation")
     public void the_user_clicks_create_button_at_top_navigation() {
         dashboardPage.createButton.click();
     }
@@ -46,7 +49,7 @@ public class DashBoardStepDefs {
         wait.until(ExpectedConditions.titleContains("new board"));
     }
 
-    @And("the user selects {string} from the boards options")
+    @When("the user selects {string} from the boards options")
     public void theUserSelectsFromTheBoardsOptions(String boardName) {
         BrowserUtils.waitFor(2);
         dashboardPage.boardPicker(boardName);
@@ -94,50 +97,26 @@ public class DashBoardStepDefs {
 
     }
 
-    /*
-    @When("the user adds following cards to the list")
-    public void theUserAddsFollowingCardsToTheList(ArrayList<String> cardName) {
+    @Then("The lists added to the board successfully")
+    public void the_lists_added_to_the_board_successfully() {
 
-        System.out.println(cardName.toString());
-
-        BrowserUtils.waitFor(2);
-        if (globalListname.equals("To Do")) {
-            boardPage.addCartForNthList(1).click();
-            for (int i = 0; i < cardName.size(); i++) {
-                boardPage.cardDetails.sendKeys(cardName.get(i) + Keys.ENTER);
-            }
-        } else if (globalListname.equals("In Progress")) {
-            boardPage.addCartForNthList(2).click();
-            for (int i = 0; i < cardName.size(); i++) {
-                boardPage.cardDetails.sendKeys(cardName.get(i) + Keys.ENTER);
-            }
-        } else if (globalListname.equals("In Testing")) {
-            boardPage.addCartForNthList(3).click();
-            for (int i = 0; i < cardName.size(); i++) {
-                boardPage.cardDetails.sendKeys(cardName.get(i) + Keys.ENTER);
-            }
-        } else if (globalListname.equals("Done")) {
-            boardPage.addCartForNthList(4).click();
-            for (int i = 0; i < cardName.size(); i++) {
-                boardPage.cardDetails.sendKeys(cardName.get(i) + Keys.ENTER);
-            }
-        }
-
+        java.util.List<WebElement> elements = boardPage.listNames();
+        ArrayList<String> listNamesText=new ArrayList<>();
+        for (WebElement el : elements) {
+            listNamesText.add(el.getText());}
+        Assert.assertEquals(listNamesText.size(),4);
     }
-
-     */
 
     @Then("The cards added to the list successfully")
     public void theCardsAddedToTheListSuccessfully() {
-        /*
-        ArrayList<String> actualCardNames = new ArrayList<>();
 
-        for (int i = 0; i < globalCardNames.size(); i++) {
-            actualCardNames.add(boardPage.cardPicker(globalCardNames.get(i)).getText());
-        }
-        Assert.assertEquals(actualCardNames, globalCardNames);
+        java.util.List<WebElement> elements = boardPage.cardNames();
+        ArrayList<String> cardNamesText= new ArrayList<>();
 
-         */
+        for (WebElement el : elements) {
+            cardNamesText.add(el.getText());}
+        Assert.assertEquals(cardNamesText.size(),4);
+
     }
 
     @When("the user adds {string} {string} {string} {string} cards to the list")
@@ -181,9 +160,25 @@ public class DashBoardStepDefs {
         BrowserUtils.waitFor(1);
     }
 
-
     @Then("The card {string} successfully moved to the list")
     public void theCardSuccessfullyMovedToTheList(String cardName) {
+        if (globalListname.equals("To Do")) {
+            java.util.List<WebElement> cards = Driver.get().findElements(By.xpath("//div[@class='list js-list-content'])[1]/div[2]/a"));
+            java.util.List<String> elementsText = BrowserUtils.getElementsText(cards);
+            Assert.assertTrue(elementsText.contains(cardName));
+        }else if (globalListname.equals("In Progress")) {
+            java.util.List<WebElement> cards = Driver.get().findElements(By.xpath("//div[@class='list js-list-content'])[2]/div[2]/a"));
+            java.util.List<String> elementsText = BrowserUtils.getElementsText(cards);
+            Assert.assertTrue(elementsText.contains(cardName));
+        }else if (globalListname.equals("In Testing")) {
+            java.util.List<WebElement> cards = Driver.get().findElements(By.xpath("//div[@class='list js-list-content'])[3]/div[2]/a"));
+            java.util.List<String> elementsText = BrowserUtils.getElementsText(cards);
+            Assert.assertTrue(elementsText.contains(cardName));
+        }else if (globalListname.equals("Done")) {
+            java.util.List<WebElement> cards = Driver.get().findElements(By.xpath("//div[@class='list js-list-content'])[4]/div[2]/a"));
+            java.util.List<String> elementsText = BrowserUtils.getElementsText(cards);
+            Assert.assertTrue(elementsText.contains(cardName));
+        }
     }
 
     @And("the user selects {string} card")
@@ -191,24 +186,40 @@ public class DashBoardStepDefs {
         boardPage.cardPicker(cardName).click();
     }
 
-    @Then("the user adds {string} label to the card")
+    @And("the user adds {string} label to the card")
     public void theUserAddsLabelToTheCard(String labelColor){
         wait.until(ExpectedConditions.elementToBeClickable(cardsDetailPage.labelsBtn));
         cardsDetailPage.labelsBtn.click();
         cardsDetailPage.labelPicker(labelColor);
-        cardsDetailPage.xBtnForCardModal.click();
+        cardsDetailPage.xBtnForLabelModal.click();
         BrowserUtils.waitFor(1);
     }
+    @Then("The label {string} added to the card")
+    public void theLabelAddedToTheCard(String labelColor) {
+        WebElement label = Driver.get().findElement(By.xpath
+                ("//span[@class='card-label card-label-" + labelColor + " mod-card-detail mod-clickable']"));
+        Assert.assertTrue(label!=null);
+        cardsDetailPage.xBtnForCardModal.click();
+    }
 
-    @Then("the user adds {string} checklist to the card")
+    @And("the user adds {string} checklist to the card")
     public void theUserAddsChecklistToTheCard(String checklistTitle) {
         cardsDetailPage.checklistBtn.click();
         BrowserUtils.waitFor(1);
         cardsDetailPage.checklistTitle.sendKeys(checklistTitle + Keys.ENTER);
+    }
+
+    @And("the user adds {string} item for the checklist")
+    public void theUserAddsItemForTheChecklist(String item) {
         wait.until(ExpectedConditions.elementToBeClickable(cardsDetailPage.itemOfChecklist));
-        cardsDetailPage.itemOfChecklist.sendKeys("Feedback from end user" + Keys.ENTER);
+        cardsDetailPage.itemOfChecklist.sendKeys(item + Keys.ENTER);
         cardsDetailPage.xBtnForCheckListItem.click();
-        BrowserUtils.waitFor(1);
+    }
+
+    @Then("the item {string} added to the checklist")
+    public void theItemAddedToTheChecklist(String item) {
+        Assert.assertEquals(cardsDetailPage.item.getText(),item);
+        BrowserUtils.waitFor(2);
         cardsDetailPage.xBtnForCardModal.click();
     }
 }
