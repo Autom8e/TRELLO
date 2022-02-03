@@ -1,0 +1,13 @@
+/Users/mutlu/IdeaProjects/TRELLO/src/test/java/com/QA_Tech_Exercise/pages/BasePage.java
+/Users/mutlu/IdeaProjects/TRELLO/src/test/java/com/QA_Tech_Exercise/step_definitions/LoginStepDefs.java
+/Users/mutlu/IdeaProjects/TRELLO/src/test/java/com/QA_Tech_Exercise/utilities/BrowserUtils.java
+/Users/mutlu/IdeaProjects/TRELLO/src/test/java/com/QA_Tech_Exercise/step_definitions/DashBoardStepDefs.java
+/Users/mutlu/IdeaProjects/TRELLO/src/test/java/com/QA_Tech_Exercise/pages/DashboardPage.java
+/Users/mutlu/IdeaProjects/TRELLO/src/test/java/com/QA_Tech_Exercise/utilities/Driver.java
+/Users/mutlu/IdeaProjects/TRELLO/src/test/java/com/QA_Tech_Exercise/step_definitions/Hooks.java
+/Users/mutlu/IdeaProjects/TRELLO/src/test/java/com/QA_Tech_Exercise/runners/FailedTestRunner.java
+/Users/mutlu/IdeaProjects/TRELLO/src/test/java/com/QA_Tech_Exercise/pages/CardsDetailPage.java
+/Users/mutlu/IdeaProjects/TRELLO/src/test/java/com/QA_Tech_Exercise/pages/LoginPage.java
+/Users/mutlu/IdeaProjects/TRELLO/src/test/java/com/QA_Tech_Exercise/pages/BoardPage.java
+/Users/mutlu/IdeaProjects/TRELLO/src/test/java/com/QA_Tech_Exercise/runners/CukesRunner.java
+/Users/mutlu/IdeaProjects/TRELLO/src/test/java/com/QA_Tech_Exercise/utilities/ConfigurationReader.java

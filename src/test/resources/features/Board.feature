@@ -9,10 +9,12 @@ Feature: Board Flow
     And the user enters required fields for creating board
     Then the user successfully creates a new board
 
+
   Scenario: User able to add lists to the created board
     When the user selects "new board" from the boards options
     And the user creates "To Do" "In Progress" "In Testing" and "Done" lists
     Then The lists added to the board successfully
+
 
   Scenario: User able to add cards to the lists
     When the user selects "new board" from the boards options
@@ -30,16 +32,16 @@ Feature: Board Flow
 
   Scenario: User able to add labels to the card
     When the user selects "new board" from the boards options
-    And the user selects "Done" list
+    And the user selects "To Do" list
     And the user selects "logo" card
     And the user adds "red" label to the card
     Then The label "red" added to the card
 
-@wip
-  Scenario: User able to add checklist to the card
+  @smoke
+  Scenario: User able to add checklist and checklist item to the card
     When the user selects "new board" from the boards options
-    And the user selects "Done" list
-    And the user selects "logo" card
+    And the user selects "In Testing" list
+    And the user selects "theme" card
     And the user adds "Checklist for logo" checklist to the card
     And the user adds "Feedback from end user" item for the checklist
     Then the item "Feedback from end user" added to the checklist

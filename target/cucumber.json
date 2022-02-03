@@ -11,7 +11,7 @@
         "steps": [
           {
             "result": {
-              "duration": 12135000000,
+              "duration": 14731000000,
               "status": "passed"
             },
             "line": 4,
@@ -24,11 +24,11 @@
         ]
       },
       {
-        "start_timestamp": "2022-02-03T22:06:00.600Z",
+        "start_timestamp": "2022-02-03T23:46:22.605Z",
         "before": [
           {
             "result": {
-              "duration": 3084000000,
+              "duration": 3831000000,
               "status": "passed"
             },
             "match": {
@@ -36,14 +36,14 @@
             }
           }
         ],
-        "line": 39,
-        "name": "User able to add checklist to the card",
+        "line": 41,
+        "name": "User able to add checklist and checklist item to the card",
         "description": "",
-        "id": "board-flow;user-able-to-add-checklist-to-the-card",
+        "id": "board-flow;user-able-to-add-checklist-and-checklist-item-to-the-card",
         "after": [
           {
             "result": {
-              "duration": 185000000,
+              "duration": 213000000,
               "status": "passed"
             },
             "match": {
@@ -56,10 +56,10 @@
         "steps": [
           {
             "result": {
-              "duration": 2303000000,
+              "duration": 2402000000,
               "status": "passed"
             },
-            "line": 40,
+            "line": 42,
             "name": "the user selects \"new board\" from the boards options",
             "match": {
               "arguments": [
@@ -77,12 +77,12 @@
               "duration": 2000000,
               "status": "passed"
             },
-            "line": 41,
-            "name": "the user selects \"Done\" list",
+            "line": 43,
+            "name": "the user selects \"In Testing\" list",
             "match": {
               "arguments": [
                 {
-                  "val": "\"Done\"",
+                  "val": "\"In Testing\"",
                   "offset": 17
                 }
               ],
@@ -92,15 +92,15 @@
           },
           {
             "result": {
-              "duration": 1104000000,
+              "duration": 1325000000,
               "status": "passed"
             },
-            "line": 42,
-            "name": "the user selects \"logo\" card",
+            "line": 44,
+            "name": "the user selects \"theme\" card",
             "match": {
               "arguments": [
                 {
-                  "val": "\"logo\"",
+                  "val": "\"theme\"",
                   "offset": 17
                 }
               ],
@@ -110,10 +110,10 @@
           },
           {
             "result": {
-              "duration": 2082000000,
+              "duration": 2478000000,
               "status": "passed"
             },
-            "line": 43,
+            "line": 45,
             "name": "the user adds \"Checklist for logo\" checklist to the card",
             "match": {
               "arguments": [
@@ -128,10 +128,10 @@
           },
           {
             "result": {
-              "duration": 510000000,
+              "duration": 615000000,
               "status": "passed"
             },
-            "line": 44,
+            "line": 46,
             "name": "the user adds \"Feedback from end user\" item for the checklist",
             "match": {
               "arguments": [
@@ -146,10 +146,10 @@
           },
           {
             "result": {
-              "duration": 2317000000,
+              "duration": 2343000000,
               "status": "passed"
             },
-            "line": 45,
+            "line": 47,
             "name": "the item \"Feedback from end user\" added to the checklist",
             "match": {
               "arguments": [
@@ -165,7 +165,7 @@
         ],
         "tags": [
           {
-            "name": "@wip"
+            "name": "@smoke"
           }
         ]
       }

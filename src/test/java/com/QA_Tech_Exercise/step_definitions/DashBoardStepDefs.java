@@ -5,7 +5,6 @@ import com.QA_Tech_Exercise.pages.CardsDetailPage;
 import com.QA_Tech_Exercise.pages.DashboardPage;
 import com.QA_Tech_Exercise.utilities.BrowserUtils;
 import com.QA_Tech_Exercise.utilities.Driver;
-import com.sun.tools.javac.util.List;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -27,7 +26,6 @@ public class DashBoardStepDefs {
     BoardPage boardPage = new BoardPage();
     String globalListname;
     Actions actions = new Actions(Driver.get());
-    List<String> globalCardNames;
     CardsDetailPage cardsDetailPage = new CardsDetailPage();
 
     @When("the user clicks create button at top navigation")
@@ -68,34 +66,7 @@ public class DashBoardStepDefs {
     public void theUserSelectsList(String listName) {
         globalListname = listName;
     }
-    @When("the user adds following cards to the list")
-    public void the_user_adds_following_cards_to_the_list(List<String> cardName) {
-        System.out.println(cardName.toString());
 
-        BrowserUtils.waitFor(2);
-        if (globalListname.equals("To Do")) {
-            boardPage.addCartForNthList(1).click();
-            for (int i = 0; i < cardName.size(); i++) {
-                boardPage.cardDetails.sendKeys(cardName.get(i) + Keys.ENTER);
-            }
-        } else if (globalListname.equals("In Progress")) {
-            boardPage.addCartForNthList(2).click();
-            for (int i = 0; i < cardName.size(); i++) {
-                boardPage.cardDetails.sendKeys(cardName.get(i) + Keys.ENTER);
-            }
-        } else if (globalListname.equals("In Testing")) {
-            boardPage.addCartForNthList(3).click();
-            for (int i = 0; i < cardName.size(); i++) {
-                boardPage.cardDetails.sendKeys(cardName.get(i) + Keys.ENTER);
-            }
-        } else if (globalListname.equals("Done")) {
-            boardPage.addCartForNthList(4).click();
-            for (int i = 0; i < cardName.size(); i++) {
-                boardPage.cardDetails.sendKeys(cardName.get(i) + Keys.ENTER);
-            }
-        }
-
-    }
 
     @Then("The lists added to the board successfully")
     public void the_lists_added_to_the_board_successfully() {
@@ -158,26 +129,27 @@ public class DashBoardStepDefs {
     public void theUserDragsCardToList(String cardName, String listName) {
         actions.dragAndDrop(boardPage.cardPicker(cardName),boardPage.listPicker(listName)).perform();
         BrowserUtils.waitFor(1);
+        globalListname=listName;
     }
 
     @Then("The card {string} successfully moved to the list")
     public void theCardSuccessfullyMovedToTheList(String cardName) {
         if (globalListname.equals("To Do")) {
-            java.util.List<WebElement> cards = Driver.get().findElements(By.xpath("//div[@class='list js-list-content'])[1]/div[2]/a"));
-            java.util.List<String> elementsText = BrowserUtils.getElementsText(cards);
-            Assert.assertTrue(elementsText.contains(cardName));
+            WebElement element = Driver.get().findElement(By.xpath("(//div[@class='list js-list-content'])[1]/div[2]/a"));
+            String cardNAme=element.getText();
+            Assert.assertTrue(cardNAme.contains(cardName));
         }else if (globalListname.equals("In Progress")) {
-            java.util.List<WebElement> cards = Driver.get().findElements(By.xpath("//div[@class='list js-list-content'])[2]/div[2]/a"));
-            java.util.List<String> elementsText = BrowserUtils.getElementsText(cards);
-            Assert.assertTrue(elementsText.contains(cardName));
+            WebElement element = Driver.get().findElement(By.xpath("(//div[@class='list js-list-content'])[2]/div[2]/a"));
+            String cardNAme=element.getText();
+            Assert.assertTrue(cardNAme.contains(cardName));
         }else if (globalListname.equals("In Testing")) {
-            java.util.List<WebElement> cards = Driver.get().findElements(By.xpath("//div[@class='list js-list-content'])[3]/div[2]/a"));
-            java.util.List<String> elementsText = BrowserUtils.getElementsText(cards);
-            Assert.assertTrue(elementsText.contains(cardName));
+            WebElement element = Driver.get().findElement(By.xpath("(//div[@class='list js-list-content'])[3]/div[2]/a"));
+            String cardNAme=element.getText();
+            Assert.assertTrue(cardNAme.contains(cardName));
         }else if (globalListname.equals("Done")) {
-            java.util.List<WebElement> cards = Driver.get().findElements(By.xpath("//div[@class='list js-list-content'])[4]/div[2]/a"));
-            java.util.List<String> elementsText = BrowserUtils.getElementsText(cards);
-            Assert.assertTrue(elementsText.contains(cardName));
+            WebElement element = Driver.get().findElement(By.xpath("(//div[@class='list js-list-content'])[4]/div[2]/a"));
+            String cardNAme=element.getText();
+            Assert.assertTrue(cardNAme.contains(cardName));
         }
     }
 

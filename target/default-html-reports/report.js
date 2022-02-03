@@ -23,12 +23,12 @@ formatter.result({
   "status": "passed"
 });
 formatter.scenario({
-  "name": "User able to add checklist to the card",
+  "name": "User able to add checklist and checklist item to the card",
   "description": "",
   "keyword": "Scenario",
   "tags": [
     {
-      "name": "@wip"
+      "name": "@smoke"
     }
   ]
 });
@@ -43,7 +43,7 @@ formatter.result({
   "status": "passed"
 });
 formatter.step({
-  "name": "the user selects \"Done\" list",
+  "name": "the user selects \"In Testing\" list",
   "keyword": "And "
 });
 formatter.match({
@@ -53,7 +53,7 @@ formatter.result({
   "status": "passed"
 });
 formatter.step({
-  "name": "the user selects \"logo\" card",
+  "name": "the user selects \"theme\" card",
   "keyword": "And "
 });
 formatter.match({
